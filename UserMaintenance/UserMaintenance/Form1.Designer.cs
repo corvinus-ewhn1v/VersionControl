@@ -49,7 +49,7 @@ namespace UserMaintenance
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(400, 26);
+            this.label1.Location = new System.Drawing.Point(363, 20);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(51, 20);
             this.label1.TabIndex = 1;
@@ -58,7 +58,7 @@ namespace UserMaintenance
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(400, 71);
+            this.label2.Location = new System.Drawing.Point(363, 65);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 20);
             this.label2.TabIndex = 2;
@@ -80,12 +80,13 @@ namespace UserMaintenance
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(404, 125);
+            this.button1.Location = new System.Drawing.Point(367, 125);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(272, 37);
+            this.button1.Size = new System.Drawing.Size(309, 37);
             this.button1.TabIndex = 5;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
