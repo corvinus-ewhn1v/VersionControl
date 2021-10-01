@@ -22,6 +22,7 @@ namespace UserMaintenance
             label1.Text = Resource1.FullName;
             button1.Text = Resource1.Add;
             button2.Text = Resource1.Write;
+            button3.Text = Resource1.Delete;
 
             listBox1.DataSource = users;
             listBox1.ValueMember = "ID";
@@ -49,7 +50,7 @@ namespace UserMaintenance
 
             if (sfd.ShowDialog() != DialogResult.OK) return;
 
-            using (var sw = new StreamWriter(sfd.FileName, false, Encoding.UTF8)) 
+            using (var sw = new StreamWriter(sfd.FileName, false, Encoding.UTF8))
             {
                 foreach (var u in users)
                 {
@@ -61,6 +62,16 @@ namespace UserMaintenance
                 }
             }
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var törlés = listBox1.SelectedItem;
+
+            if (törlés != null)
+            {
+                users.Remove((User)törlés);
+            }
         }
     }
 }
