@@ -32,6 +32,7 @@ namespace _5.gyak
 
             dataGridView2.DataSource = Portfolio;
 
+
         }
     }
 }
