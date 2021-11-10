@@ -21,8 +21,8 @@ namespace _8.gyak
         public IToyFactory Factory
         {
             get { return _factory; }
-            set 
-            { 
+            set
+            {
                 _factory = value;
                 DisplayNext();
             }
@@ -32,7 +32,7 @@ namespace _8.gyak
         {
             InitializeComponent();
             Factory = new BallFactory();
-            
+
         }
 
         private void createTimer_Tick(object sender, EventArgs e)
@@ -68,7 +68,11 @@ namespace _8.gyak
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Factory = new BallFactory();
+            Factory = new BallFactory
+            {
+                BallColor = button3.BackColor
+            };
+    
         }
 
         private void DisplayNext()
