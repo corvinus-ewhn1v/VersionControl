@@ -1,4 +1,5 @@
-﻿using _8.gyak.Entities;
+﻿using _8.gyak.Abstractions;
+using _8.gyak.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,10 +14,10 @@ namespace _8.gyak
 {
     public partial class Form1 : Form
     {
-        List<Ball> _toys = new List<Ball>();
-        private BallFactory _factory;
+        List<Toy> _toys = new List<Toy>();
+        private IToyFactory _factory;
 
-        public BallFactory Factory
+        public IToyFactory Factory
         {
             get { return _factory; }
             set { _factory = value; }
@@ -32,7 +33,7 @@ namespace _8.gyak
         private void createTimer_Tick(object sender, EventArgs e)
         {
             var toy = Factory.CreateNew();
-            _toys.Add((Ball)toy);
+            _toys.Add(toy);
             toy.Left = -toy.Width;
             mainPanel.Controls.Add(toy);
         }
@@ -40,11 +41,11 @@ namespace _8.gyak
         private void conveyorTimer_Tick(object sender, EventArgs e)
         {
             var maxPosition = 0;
-            foreach (var ball in _toys)
+            foreach (var toy in _toys)
             {
-                ball.MoveToy();
-                if (ball.Left > maxPosition)
-                    maxPosition = ball.Left;
+                toy.MoveToy();
+                if (toy.Left > maxPosition)
+                    maxPosition = toy.Left;
             }
 
             if (maxPosition > 1000)
@@ -53,6 +54,16 @@ namespace _8.gyak
                 mainPanel.Controls.Remove(oldestBall);
                 _toys.Remove(oldestBall);
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Factory = new CarFactory();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Factory = new BallFactory();
         }
     }
 }
