@@ -16,11 +16,16 @@ namespace _8.gyak
     {
         List<Toy> _toys = new List<Toy>();
         private IToyFactory _factory;
+        private Toy _nextToy;
 
         public IToyFactory Factory
         {
             get { return _factory; }
-            set { _factory = value; }
+            set 
+            { 
+                _factory = value;
+                DisplayNext();
+            }
         }
 
         public Form1()
@@ -64,6 +69,16 @@ namespace _8.gyak
         private void button2_Click(object sender, EventArgs e)
         {
             Factory = new BallFactory();
+        }
+
+        private void DisplayNext()
+        {
+            if (_nextToy != null)
+                Controls.Remove(_nextToy);
+            _nextToy = Factory.CreateNew();
+            _nextToy.Top = label1.Top + label1.Height + 20;
+            _nextToy.Left = label1.Left;
+            Controls.Add(_nextToy);
         }
     }
 }
