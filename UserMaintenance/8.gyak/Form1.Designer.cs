@@ -37,7 +37,7 @@ namespace _8.gyak
             // 
             // mainPanel
             // 
-            this.mainPanel.Location = new System.Drawing.Point(12, 12);
+            this.mainPanel.Location = new System.Drawing.Point(12, 338);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(776, 100);
             this.mainPanel.TabIndex = 0;
