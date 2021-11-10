@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace _8.gyak.Entities
 {
-    public class BallFactory : IToyFactory
+    public class BallFactory : Abstractions.IToyFactory
     {
-        public Toy CreateNew()
+        public Abstractions.Toy CreateNew()
         {
             return new Ball();
         }
