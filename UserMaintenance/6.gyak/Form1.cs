@@ -47,7 +47,7 @@ namespace _6.gyak
             var response = mnbService.GetExchangeRates(request);
 
             var result = response.GetExchangeRatesResult;
-
+            
             var xml = new XmlDocument();
 
             xml.LoadXml(result);
