@@ -18,14 +18,6 @@ namespace UnitTestExample.Test
               TestCase("irf@uni-corvinus.hu", true)
           ]
 
-        [
-            TestCase("Password", false),
-            TestCase("PASSWORD", false),
-            TestCase("password", false),
-            TestCase("pas", false),
-            TestCase("Password1", true)
-        ]
-
         public void TestValidateEmail(string email, bool expectedResult)
         {
             // Arrange
@@ -39,7 +31,26 @@ namespace UnitTestExample.Test
 
         }
 
+        [
+            TestCase("Password", false),
+            TestCase("PASSWORD1", false),
+            TestCase("password1", false),
+            TestCase("P1", false),
+            TestCase("Password1", true)
+        ]
+        public void TestValidatePassword(string password, bool expectedResult)
+        {
+            // Arrange
+            var accountController = new AccountController();
 
-        
+            // Act
+            var actualResult = accountController.ValidatePassword(password);
+
+            // Assert
+            Assert.AreEqual(expectedResult, actualResult);
+
+        }
+
+
     }
 }

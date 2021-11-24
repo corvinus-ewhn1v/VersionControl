@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using System.Activities;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,9 +49,19 @@ namespace UnitTestExample.Controllers
                 @"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
         }
 
+
         public bool ValidatePassword(string password)
         {
-            return true;
+             var kisBetu = new Regex(@"[a-z]+");
+             var nagyBetu = new Regex(@"[A-Z]+");
+             var szam = new Regex(@"[0-9]+");
+             var nyolcHosszu = new Regex(@".{8,}");
+
+             return kisBetu.IsMatch(password) && nagyBetu.IsMatch(password) && szam.IsMatch(password) && nyolcHosszu.IsMatch(password);
+
         }
+
+
+
     }
 }
