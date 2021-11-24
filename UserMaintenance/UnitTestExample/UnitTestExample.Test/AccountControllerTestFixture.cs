@@ -10,12 +10,20 @@ namespace UnitTestExample.Test
 {
     public class AccountControllerTestFixture
     {
+         [
+              Test,
+              TestCase("abcd1234", false),
+              TestCase("irf@uni-corvinus", false),
+              TestCase("irf.uni-corvinus.hu", false),
+              TestCase("irf@uni-corvinus.hu", true)
+          ]
+
         [
-            Test,
-            TestCase("abcd1234", false),
-            TestCase("irf@uni-corvinus", false),
-            TestCase("irf.uni-corvinus.hu", false),
-            TestCase("irf@uni-corvinus.hu", true)
+            TestCase("Password", false),
+            TestCase("PASSWORD", false),
+            TestCase("password", false),
+            TestCase("pas", false),
+            TestCase("Password1", true)
         ]
 
         public void TestValidateEmail(string email, bool expectedResult)
@@ -30,5 +38,8 @@ namespace UnitTestExample.Test
             Assert.AreEqual(expectedResult, actualResult);
 
         }
+
+
+        
     }
 }
