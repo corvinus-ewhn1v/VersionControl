@@ -98,7 +98,7 @@ namespace UnitTestExample.Test
             try
             {
                 var actualResult = accountController.Register(email, password);
-                Assert.Fail();
+                Assert.Fail(email, password);
             }
             catch (Exception ex)
             {
