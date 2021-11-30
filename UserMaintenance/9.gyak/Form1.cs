@@ -18,6 +18,8 @@ namespace _9.gyak
         List<BirthProbability> BirthProbabilities = new List<BirthProbability>();
         List<DeathProbability> DeathProbabilities = new List<DeathProbability>();
         Random rng = new Random(1234);
+        List<int> males = new List<int>();
+        List<int> females = new List<int>();
         public Form1()
         {
             InitializeComponent();
@@ -25,8 +27,12 @@ namespace _9.gyak
             Population = GetPopulation(@"C:\Temp\nép.csv");
             BirthProbabilities = GetBirthProbabilities(@"C:\Temp\születés.csv");
             DeathProbabilities = GetDeathProbabilities(@"C:\Temp\halál.csv");
+            
+        }
 
-            for (int year = 2005; year <= 2024; year++)
+        private void Simulation()
+        {
+            for (int year = 2005; year <= numericUpDown1.Value; year++)
             {
                 for (int i = 0; i < Population.Count; i++)
                 {
@@ -39,8 +45,13 @@ namespace _9.gyak
                 int nbrOfFemales = (from x in Population
                                     where x.Gender == Gender.Female && x.IsAlive
                                     select x).Count();
+                males.Add(nbrOfMales);
+                females.Add(nbrOfFemales);
+
                 Console.WriteLine(
                     string.Format("Év:{0} Fiúk:{1} Lányok:{2}", year, nbrOfMales, nbrOfFemales));
+
+                DisplayResults();
             }
         }
 
@@ -133,6 +144,31 @@ namespace _9.gyak
                     újSzülött.Gender = (Gender)(rng.Next(1, 3));
                     Population.Add(újSzülött);
                 }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Clear();
+            males.Clear();
+            females.Clear();
+            Simulation();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+
+            if (ofd.ShowDialog() != DialogResult.OK) return;
+
+            textBox1.Text= @"C:\Temp\nép.csv";
+        }
+
+        private void DisplayResults()
+        {
+            foreach (var year in Population)
+            {
+                richTextBox1.Text = string.Format("{0}{1}{2}", year, males, females);
             }
         }
     }
