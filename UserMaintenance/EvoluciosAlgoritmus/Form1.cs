@@ -29,7 +29,7 @@ namespace EvoluciosAlgoritmus
             this.Controls.Add(ga);
 
             //gc.AddPlayer();
-            // gc.Start(true);
+             //gc.Start(true);
 
             gc.GameOver += Gc_GameOver;
 
