@@ -20,6 +20,7 @@ namespace EvoluciosAlgoritmus
         int nbrOfSteps = 10;
         int nbrOfStepsIncrement = 10;
         int generation = 1;
+        Brain winnerBrain = null;
         public Form1()
         {
             InitializeComponent();
@@ -64,6 +65,30 @@ namespace EvoluciosAlgoritmus
             }
             gc.Start();
 
+            var winners = from p in topPerformers
+                          where p.IsWinner
+                          select p;
+            if (winners.Count() > 0)
+            {
+                winnerBrain = winners.FirstOrDefault().Brain.Clone();
+                gc.GameOver -= Gc_GameOver;
+                return;
+            }
+
+            button1.Visible = false;
+            if (winners.Count() > 0)
+            {
+                button1.Visible = true;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            gc.ResetCurrentLevel();
+            gc.AddPlayer(winnerBrain.Clone());
+            gc.AddPlayer();
+            ga.Focus();
+            gc.Start(true);
         }
     }
 }
